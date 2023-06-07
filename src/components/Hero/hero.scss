@@ -1,0 +1,115 @@
+.hero {
+  background: #036c5e;
+  &-row {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  &-card {
+    max-width: 620px;
+    p {
+      margin-top: 30px;
+    }
+    button {
+      margin-top: 128px;
+    }
+  }
+  &-img {
+    max-width: 600px;
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background-size: cover; /* rasmni qamrab o'tadigan o'lchamni belgilash */
+    background-position: center center; /* rasmni markazga joylashtirish */
+    &-text {
+      position: absolute;
+      top: 50%;
+      left: 17%;
+      transform: translate(-50%, -50%);
+      h1 {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 80px;
+        line-height: 120%;
+        /* identical to box height, or 96px */
+
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        /* 2 */
+
+        color: #036c5e;
+      }
+      h2 {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 50px;
+        line-height: 120%;
+        /* identical to box height, or 60px */
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        /* White */
+        color: #ffffff;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .hero {
+    background: #036c5e;
+    overflow: hidden;
+    &-row {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    &-card {
+      max-width: 620px;
+      text-align: center;
+      p {
+        margin-top: 30px;
+      }
+      button {
+        margin-top: 30px;
+      }
+    }
+    &-img {
+      margin:30px auto;
+      max-width: 600px;
+      width: 100%;
+      height: 400px;
+      position: relative;
+      background-size: cover; /* rasmni qamrab o'tadigan o'lchamni belgilash */
+      background-position: center center; /* rasmni markazga joylashtirish */
+      &-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        h1 {
+          font-family: 'Raleway';
+          font-style: normal;
+          font-weight: 900;
+          font-size: 80px;
+          line-height: 120%;
+          /* identical to box height, or 96px */
+
+          font-feature-settings: 'pnum' on, 'lnum' on;
+
+          /* 2 */
+
+          color: #036c5e;
+        }
+        h2 {
+          font-family: 'Raleway';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 50px;
+          line-height: 120%;
+          /* identical to box height, or 60px */
+          font-feature-settings: 'pnum' on, 'lnum' on;
+          /* White */
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.btn-ok {
+  padding: 14.5px 30px;
+  background: #eac632;
+  border-radius: 5px;
+  border: none;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  /* 2 */
+  color: #036c5e;
+
+  &:hover {
+    background: #eac532f1;
+  }
+}
