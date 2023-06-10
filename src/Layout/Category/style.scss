@@ -1,0 +1,10 @@
+.category_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.category_wrapper {
+  padding: 20px 0px;
+}

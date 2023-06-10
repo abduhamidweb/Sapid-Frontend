@@ -1,0 +1,19 @@
+.btnNew {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 14.5px 20px;
+  background: #348379;
+  border-radius: 5px;
+  border: none;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+
+  /* White */
+
+  color: #ffffff;
+}
+.btnNew span:nth-child(2) {
+  margin-left: 10px;
+}
