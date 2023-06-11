@@ -2,15 +2,24 @@ import React, { useState } from 'react';
 import CategoryItem from '../../components/CateItem/CategoryItem';
 import "./style.scss"
 import BtnNew from '../../components/BtnNew/BtnNew';
+import { useSelector } from 'react-redux';
+
 const Category = () => {
+    const { allProducts } = useSelector((state) => state.counter)
+    const categoriesSet = new Set()
+    const filteredProducts = allProducts.reduce((acc, product) => {
+        if (!categoriesSet.has(product.category)) {
+            categoriesSet.add(product.category);
+            acc.push(product.category);
+        }
+        return acc;
+    }, []);
     const [activeCategory, setActiveCategory] = useState(0);
-
-    const categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'];
-
+    const categories = [...filteredProducts];
+    categories.unshift("All Products")
     const handleCategoryClick = (index) => {
         setActiveCategory(index);
     };
-
     return (
         <>
             <section className='category'>
@@ -19,6 +28,7 @@ const Category = () => {
                         <div className="row ">
                             <div className="col-lg-10">
                                 <ul className='category_list'>
+
                                     {categories.map((category, index) => (
                                         <CategoryItem
                                             key={index}

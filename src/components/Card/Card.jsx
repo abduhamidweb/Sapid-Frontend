@@ -1,5 +1,7 @@
 import "./card.scss";
 import { useState, useRef, useEffect } from "react";
+import URL from '../../API/API'
+
 const YourComponent = ({ id }) => {
     const aRef = useRef(null);
 
@@ -12,15 +14,14 @@ const YourComponent = ({ id }) => {
 
     return <input ref={aRef} />;
 };
-const Card2 = ({ id }) => {
+const Card2 = ({ data: { title, _id, description, img } }) => {
+
     let a = document.createElement('input');
     a.setAttribute('class', "w-100");
-    a.setAttribute('id', id);
     const isCardFooter = useRef()
     function handlerInput(id) {
         isCardFooter.current.innerHTML = '';
         let isDivTeg = document.createElement('div')
-
         let isInputTeg = document.createElement('input')
         isInputTeg.value = 1;
         let isButtonTegPlus = document.createElement('button')
@@ -36,17 +37,18 @@ const Card2 = ({ id }) => {
         isDivTeg.appendChild(isButtonTegMinus)
         isCardFooter.current.append(isDivTeg);
     }
+    console.log(URL.BASE_URL + '/foodIMG/' + img);
     return (
         <>
             <div className="col-lg-3 col-md-6 co-sm-12 mx-auto my-3 px-4">
                 <div className="card">
                     <div className="discount discount_top">-10%</div>
                     <div className="image-wrapper">
-                        <img src="https://via.placeholder.com/200x200" alt="product image" />
+                        <img src={URL.BASE_URL + '/foodIMG/' + img} alt="product image" />
                     </div>
                     <div className="header__body">
-                        <div className="title">Product title</div>
-                        <div className="description">Product description</div>
+                        <div className="title">{title}</div>
+                        <div className="description">{description}</div>
                     </div>
                     <div className="header__footer" ref={isCardFooter}>
                         <div className="price ">
@@ -54,7 +56,7 @@ const Card2 = ({ id }) => {
                             <span className="discount">$61320</span>
                         </div>
                         <div className="btn_wrpaper">
-                            <button className="button" id={id} onClick={(e) => handlerInput(e.target.getAttribute("id"))}>Buy now</button>
+                            <button className="button" id={_id} onClick={(e) => handlerInput(e.target.getAttribute("id"))}>Buy now</button>
                         </div>
                     </div>
                 </div>

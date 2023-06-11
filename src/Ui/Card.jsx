@@ -1,18 +1,21 @@
-import React from 'react';
 import "./Cards.scss"
 import Card2 from '../components/Card/Card';
+import { useSelector } from "react-redux";
 const Card = () => {
-    let cardId= [1,2,3,4,5,6,7,8]
+    const { allProducts } = useSelector((state) => state.counter)
+    console.log('allProducts :', allProducts);
+
     return (
         <>
             <section className='cards'>
                 <div className="container">
                     <div className="row">
                         {
-                            cardId.map(item => {
-                                return <Card2 id={item} key={item} />
+                            allProducts.map(item => {
+                                return <Card2 data={item} key={item} />
                             })
                         }
+
                     </div>
                 </div>
             </section>
