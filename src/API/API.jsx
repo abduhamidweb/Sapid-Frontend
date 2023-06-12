@@ -1,9 +1,28 @@
 import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 const API = {
-    getData: async () => {
+    getData: async (category) => {
         try {
-            const res = await axios.get(`${BASE_URL}/api/product`);
+            if (category) {
+                if (category.toLowerCase().trim() == String("all Products").toLocaleLowerCase().trim()) {
+                    const res = await axios.get(`${BASE_URL}/api/product`);
+                    return res.data;
+                } else {
+                    const res = await axios.get(`${BASE_URL}/api/product?category=${category}`);
+                    return res.data;
+                }
+            } else {
+                const res = await axios.get(`${BASE_URL}/api/product`);
+                return res.data;
+            }
+        } catch (error) {
+            console.log('error :', error);
+            return null;
+        }
+    },
+    getDataByCategory: async (category) => {
+        try {
+            const res = await axios.get(`${BASE_URL}/api/product?category=${category}`);
             return res.data;
         } catch (error) {
             console.log('error :', error);

@@ -3,11 +3,14 @@ import CategoryItem from '../../components/CateItem/CategoryItem';
 import "./style.scss"
 import BtnNew from '../../components/BtnNew/BtnNew';
 import { useSelector } from 'react-redux';
-
+import { setCategory } from '../../features/counter/counterSlice';
+import { useDispatch } from 'react-redux';
 const Category = () => {
-    const { allProducts } = useSelector((state) => state.counter)
+    const dispatch = useDispatch()
+    const { allCategory } = useSelector((state) => state.counter)
+    console.log('allCategory :', allCategory);
     const categoriesSet = new Set()
-    const filteredProducts = allProducts.reduce((acc, product) => {
+    const filteredProducts = allCategory.reduce((acc, product) => {
         if (!categoriesSet.has(product.category)) {
             categoriesSet.add(product.category);
             acc.push(product.category);
@@ -34,7 +37,10 @@ const Category = () => {
                                             key={index}
                                             category={category}
                                             active={index === activeCategory}
-                                            handleClick={() => handleCategoryClick(index)}
+                                            handleClick={(e) => {
+                                                handleCategoryClick(index)
+                                                dispatch(setCategory(e.target.textContent))
+                                            }}
                                         />
                                     ))}
                                 </ul>

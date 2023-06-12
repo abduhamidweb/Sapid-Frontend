@@ -7,7 +7,7 @@ import Card from './Ui/Card'
 import Sidebar from './Ui/Sidebar/Sidebar'
 import Dostafka from './Ui/dostafka'
 import Hero from './components/Hero/Hero'
-// import Data from './data/Data'
+import Data from './data/Data'
 // import { Counter } from './features/counter/Counter'
 function App() {
   const { isSaved } = useSelector((state) => state.counter)
@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       {/* <Counter /> */}
-      {/* <Data/> */}
+      <Data/>
       {isSaved ? <Sidebar /> : ""}
       <Header />
       <Hero />

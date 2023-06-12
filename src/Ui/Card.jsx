@@ -3,8 +3,6 @@ import Card2 from '../components/Card/Card';
 import { useSelector } from "react-redux";
 const Card = () => {
     const { allProducts } = useSelector((state) => state.counter)
-    console.log('allProducts :', allProducts);
-
     return (
         <>
             <section className='cards'>
@@ -15,7 +13,6 @@ const Card = () => {
                                 return <Card2 data={item} key={item} />
                             })
                         }
-
                     </div>
                 </div>
             </section>

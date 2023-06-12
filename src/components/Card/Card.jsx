@@ -37,7 +37,6 @@ const Card2 = ({ data: { title, _id, description, img } }) => {
         isDivTeg.appendChild(isButtonTegMinus)
         isCardFooter.current.append(isDivTeg);
     }
-    console.log(URL.BASE_URL + '/foodIMG/' + img);
     return (
         <>
             <div className="col-lg-3 col-md-6 co-sm-12 mx-auto my-3 px-4">
