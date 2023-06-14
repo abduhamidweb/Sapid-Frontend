@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 const Category = () => {
     const dispatch = useDispatch()
     const { allCategory } = useSelector((state) => state.counter)
-    console.log('allCategory :', allCategory);
     const categoriesSet = new Set()
     const filteredProducts = allCategory.reduce((acc, product) => {
         if (!categoriesSet.has(product.category)) {

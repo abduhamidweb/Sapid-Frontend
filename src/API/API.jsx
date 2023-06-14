@@ -67,4 +67,4 @@ const API = {
     }
 }
 
-export default {API,BASE_URL};
+export default { API, BASE_URL };
