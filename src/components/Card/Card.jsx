@@ -16,26 +16,40 @@ const Card2 = ({ data: { title, _id, description, img, price, discount } }) => {
             obj.count = inputValue + 1;
             obj.price = productPrice;
             setTotalArray([...totalArray, obj]);
-            // setTotolPrice(totolPrice + obj.price);
         } else {
             obj.product = id;
-            obj.count = inputValue - 1
+            obj.count = inputValue - 1;
             obj.price = productPrice;
-            let newTotal = totalArray.map(item => {
+            subtractLargestCount(totalArray, obj);
+        }
+        function subtractLargestCount(array, obj) {
+            let counts = {};
+            array.forEach(item => {
+                const countKey = item.count.toString();
+                counts[countKey] = (counts[countKey] || 0) + 1;
+            });
+            let maxCount = Math.max(...Object.keys(counts));
+            let modifiedArray = array.slice();
+            modifiedArray = modifiedArray.map(item => {
                 if (item.product == obj.product) {
-                console.log('item :', item);
-                // console.log('item :', item);
-                    // return item.count - 1
+                    if (item.count === maxCount) {
+                        return {
+                            ...item,
+                            count: item.count - 1
+                        };
+                    }
                 }
-            })
-            // console.log(newTotal);
-            // setTotalArray([...newTotal, obj]);
-            // setTotolPrice(totolPrice - obj.price);
+                return item;
+            });
+            setTotalArray([...modifiedArray]);
         }
     }
     function handlerInput(id) {
         setBuy(true);
     }
+    // if (inputValue == 0) {
+    //     setBuy(false);
+    // }
     return (
         <>
             <div className="col-lg-3 col-md-6 co-sm-12 mx-auto my-3 px-4">
@@ -55,7 +69,11 @@ const Card2 = ({ data: { title, _id, description, img, price, discount } }) => {
                                 <span className="discount">${price}</span>
                             </div>
                             <div className="btn_wrpaper">
-                                <button className="button" id={_id} onClick={(e) => handlerInput(e.target.getAttribute("id"))}>Buy now</button>
+                                <button className="button" id={_id} onClick={(e) => {
+                                    handlerInput(e.target.getAttribute("id"))
+                                    setInputValue((prevValue) => prevValue + 1)
+                                    handlerInput2(e.target.getAttribute("id"), price, true)
+                                }}>Buy now</button>
                             </div>
                         </div> : null
                     }
@@ -63,10 +81,11 @@ const Card2 = ({ data: { title, _id, description, img, price, discount } }) => {
                         buy ? <div className="form-control mt-3">
                             <button className="bg-warning" id={_id} onClick={(e) => {
                                 setInputValue((prevValue) => inputValue > 1 ? prevValue - 1 : null);
-                                inputValue > 1 ? handlerInput2(e.target.getAttribute("id"), price, false) : null
+                                inputValue > 0 ? handlerInput2(e.target.getAttribute("id"), price, false) : null
+                                inputValue == 1 ? setBuy(false) : null
                             }
                             }>-</button>
-                            <input type="text" className="" value={inputValue || 1} />
+                            <input type="text" className="" value={inputValue} disabled />
                             <button className="bg-info" id={_id} onClick={(e) => {
                                 setInputValue((prevValue) => prevValue + 1)
                                 handlerInput2(e.target.getAttribute("id"), price, true)

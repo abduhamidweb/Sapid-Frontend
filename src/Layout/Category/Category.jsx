@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import CategoryItem from '../../components/CateItem/CategoryItem';
 import "./style.scss"
 import BtnNew from '../../components/BtnNew/BtnNew';
 import { useSelector } from 'react-redux';
 import { setCategory } from '../../features/counter/counterSlice';
 import { useDispatch } from 'react-redux';
+import context from '../../Context/Context';
 const Category = () => {
     const dispatch = useDispatch()
     const { allCategory } = useSelector((state) => state.counter)
+    const { totalSum } = useContext(context);
+
     const categoriesSet = new Set()
     const filteredProducts = allCategory.reduce((acc, product) => {
         if (!categoriesSet.has(product.category)) {
@@ -45,7 +48,7 @@ const Category = () => {
                                 </ul>
                             </div>
                             <div className="col-lg-2 text-end">
-                                <BtnNew text={"2000"} />
+                                <BtnNew text={totalSum} />
                             </div>
                         </div>
                     </div>
