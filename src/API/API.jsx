@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://sapid.onrender.com";
 const API = {
     getData: async (category) => {
         try {
@@ -31,7 +31,7 @@ const API = {
     },
     getDataById: async (id) => {
         try {
-            const res = await axios.get(`${BASE_URL}/api/LINK/${id}`);
+            const res = await axios.get(`${BASE_URL}/api/product?id=${id}`);
             return res.data;
         } catch (error) {
             console.log('error :', error);

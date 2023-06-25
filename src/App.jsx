@@ -32,11 +32,12 @@ function App() {
 
     const total = [];
     countMap.forEach((count, product) => {
-      const price = Math.floor(data.find(item => item.product === product).price);
+      const { price, food } = data.find(item => item.product === product);
       total.push({
         product,
         count,
-        price
+        price,
+        food
       });
     });
 
@@ -57,26 +58,19 @@ function App() {
 
     return sum;
   };
+  const removeZeroCountItems = (items) => {
+    return items.filter(item => item.count !== 0);
+  };
 
+  const filteredData = removeZeroCountItems(totalArr);
   // `data` o'zgarishdi
   useEffect(() => {
     const sum = calculateTotalSum(totalArr);
     setTotalSum(sum);
   }, [totalArr]);
-  // const calculateTotalSum = (data) => {
-  //   let totalSum = 0;
-
-  //   for (let i = 0; i < data.length; i++) {
-  //     const { count, price } = data[i];
-  //     const subtotal = count * price;
-  //     totalSum += subtotal;
-  //   }
-  //   return totalSum;
-  // };
-  // const totalSum = calculateTotalSum(totalArr);
   return (
     <>
-      <context.Provider value={{ selectData, setSelectData, setTotolPrice, totolPrice, totalArray, setTotalArray, totalSum }}>
+      <context.Provider value={{ selectData,filteredData, setSelectData, setTotolPrice, totolPrice, totalArray, setTotalArray, totalSum }}>
         {/* <Counter /> */}
         <Data />
         {isSaved ? <Sidebar /> : ""}

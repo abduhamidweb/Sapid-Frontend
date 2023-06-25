@@ -2,24 +2,26 @@ import "./card.scss";
 import { useState, useRef, useEffect, useContext } from "react";
 import URL from '../../API/API'
 import context from "../../Context/Context";
+import API from "../../API/API";
 
 const Card2 = ({ data: { title, _id, description, img, price, discount } }) => {
     const { totolPrice, setTotolPrice, totalArray, setTotalArray } = useContext(context);
     const [inputValue, setInputValue] = useState(0);
     const [buy, setBuy] = useState(false);
 
-    function handlerInput2(id, productPrice, status) {
+  async  function handlerInput2(id, productPrice, status) {
         const obj = {};
-
         if (status) {
             obj.product = id;
             obj.count = inputValue + 1;
             obj.price = productPrice;
-            setTotalArray([...totalArray, obj]);
+            obj.food = await API.API.getDataById(id);
+            setTotalArray([...totalArray,  obj]);
         } else {
             obj.product = id;
             obj.count = inputValue - 1;
             obj.price = productPrice;
+            obj.food = await API.API.getDataById(id);
             subtractLargestCount(totalArray, obj);
         }
         function subtractLargestCount(array, obj) {
