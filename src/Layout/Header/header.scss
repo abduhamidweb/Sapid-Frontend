@@ -49,5 +49,14 @@
     &-btn:nth-child(2) {
       margin-left: 10px;
     }
+     &-btn:nth-child(1):hover {
+       // margin-left: 10px;
+       transform: scale(0.9);
+     }
+
+     &-btn:nth-child(2):hover {
+       // margin-left: 10px;
+       transform: scale(0.9);
+     }
   }
 }
